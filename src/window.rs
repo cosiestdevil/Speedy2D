@@ -213,6 +213,13 @@ pub trait WindowHandler<UserEventType = ()>
     {
     }
 
+    /// Invoked when a touch event starts
+    #[allow(unused_variables)]
+    #[inline]
+    fn on_touch(&mut self, helper: &mut WindowHelper<UserEventType>,position: Vec2)
+    {
+    }
+
     /// Invoked when the mouse changes position.
     ///
     /// Normally, this provides the absolute  position of the mouse in the
@@ -409,7 +416,15 @@ where
 
         renderer.draw_frame(|graphics| window_handler.on_draw(helper, graphics))
     }
-
+    #[inline]
+    pub fn on_touch(
+        &mut self,
+        helper: &mut WindowHelper<UserEventType>,
+        position: Vec2
+    )
+    {
+        self.window_handler.on_touch(helper,position)
+    }
     #[inline]
     pub fn on_mouse_move(
         &mut self,

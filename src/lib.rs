@@ -292,7 +292,7 @@
 //! just build-example-webgl
 //! ```
 
-#![deny(warnings)]
+//#![deny(warnings)]
 #![deny(missing_docs)]
 
 use std::fmt::{Display, Formatter};

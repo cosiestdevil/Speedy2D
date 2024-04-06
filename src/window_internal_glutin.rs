@@ -448,6 +448,17 @@ impl<UserEventType: 'static> WindowGlutin<UserEventType>
 
                 GlutinWindowEvent::CloseRequested => return WindowEventLoopAction::Exit,
 
+                GlutinWindowEvent::Touch(touch)=>{
+                    let position = Vector2::new(touch.location.x, touch.location.y).into_f32();
+                    match touch.phase {
+                        TouchPhase::Started => handler.on_touch(helper,position),
+                        TouchPhase::Moved => {}
+                        TouchPhase::Ended => {}
+                        TouchPhase::Cancelled => {}
+                    }
+
+                }
+
                 GlutinWindowEvent::CursorMoved { position, .. } => {
                     let position = Vector2::new(position.x, position.y).into_f32();
 
